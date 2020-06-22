@@ -13,16 +13,6 @@ nunjucks.configure('src/views', {
 })
 
 function dataFormatter(data){
-    // console.log(data);
-    // let dia = data.getDay() + '';
-    // let mes = data.getMonth() + '';
-    // let ano = data.getFullYear() + '';
-
-    // dia = dia.length == 1?'0'+dia:dia;
-    // mes = mes.length == 1?'0'+mes:mes;
-    // console.log(`${dia}/${mes}/${ano}`)
-    // return `${dia}/${mes}/${ano}`;
-
     let dia = data.substring(8, 10);
     let mes = data.substring(5, 7);
     let ano = data.substring(0, 4);
@@ -31,19 +21,35 @@ function dataFormatter(data){
     return formattedDate;
 }
 
-server.get("/", (req, res) => {
-    const url = `https://api.unsplash.com/photos/random?client_id=${process.env.ACCESS_TOKEN}&orientation=landscape&count=12`;
-
+function getImages(url, searched, res){
     fetch(url)
     .then( res => res.json() )
     .then( images => {
+        if(searched){
+            images = images.results;
+        }
         for(image of images){
-            //const data = new Date(image.created_at);
             image.created_at = dataFormatter(image.created_at);
         }
 
         return res.render("index.html", { images: images });
     })
+}
+
+server.get("/", (req, res) => {
+    const search = req.query.search
+
+    let url = "";
+    let searched = false;
+    if(search){
+        url = `https://api.unsplash.com/search/photos?query=${search}&client_id=${process.env.ACCESS_TOKEN}&per_page=12`;
+        searched = true;
+    }else{
+        url = `https://api.unsplash.com/photos/random?client_id=${process.env.ACCESS_TOKEN}&orientation=landscape&count=12`;
+        searched = false
+    }
+    
+    return getImages(url, search?true:false, res);
 })
 
 

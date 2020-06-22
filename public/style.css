@@ -9,11 +9,63 @@ body {
 
 header{
     background: #3772FF;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header form input{
+    border:0;
+    border-radius: 8px 0 0 8px;
+
+    padding-left: 10px;
+
+    outline: none;
+
+    width: 300px;
+    height: 38px;
+
+    font-size: 15px;
+}
+
+header form button{
+    background-color: rgba(0, 0, 0, 0.199);
+    border-radius: 0 8px 8px 0;
+    border:0;
+    outline: none;
+
+    height: 38px;
+    width: 38px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4%;
+
+    cursor: pointer;
+}
+
+header form button:hover{
+    background-color: rgba(0, 0, 0, 0.329);
+}
+
+header form button img{
+    width: 25px;
+    height: 22px;
+    padding: 2%;
 }
 
 header h1{
     color: #fff;
-    padding: 2% 0 2% 4%;
+    padding: 2% 0 2%;
 
     font-family: Roboto, 'Century Gothic';
     font-weight: 300;
