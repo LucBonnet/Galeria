@@ -16,50 +16,27 @@
     <main>
         <div class="content">
             <div class="cards">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1486260713155-8095db2d9954?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0MzQ5Nn0" alt="baseball players playing baseball on baseball field">
-                    <div class="card-content">
-                        <span>04/02/2017</span>
-                        <p>Descrição: Jogador de Baisebol</p>
+                {% for image in images %}
+                    <div class="card">
+                        <img 
+                            src="{{ image.urls.small }}" 
+                            alt="{{ image.alt_description }}">
+                        <div class="card-content">
+                            <span>{{ image.created_at }}</span>
+                            <p>
+                                {% if image.description %}
+                                    Descrição: {{ image.description }}
+                                {% else %}
+                                    Descrição: -
+                                {% endif %}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1486260713155-8095db2d9954?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0MzQ5Nn0" alt="baseball players playing baseball on baseball field">
-                    <div class="card-content">
-                        <span>04/02/2017</span>
-                        <p>Descrição: Jogador de Baisebol</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1486260713155-8095db2d9954?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0MzQ5Nn0" alt="baseball players playing baseball on baseball field">
-                    <div class="card-content">
-                        <span>04/02/2017</span>
-                        <p>Descrição: Jogador de Baisebol</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1486260713155-8095db2d9954?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0MzQ5Nn0" alt="baseball players playing baseball on baseball field">
-                    <div class="card-content">
-                        <span>04/02/2017</span>
-                        <p>Descrição: Jogador de Baisebol</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1486260713155-8095db2d9954?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0MzQ5Nn0" alt="baseball players playing baseball on baseball field">
-                    <div class="card-content">
-                        <span>04/02/2017</span>
-                        <p>Descrição: Jogador de Baisebol</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1486260713155-8095db2d9954?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0MzQ5Nn0" alt="baseball players playing baseball on baseball field">
-                    <div class="card-content">
-                        <span>04/02/2017</span>
-                        <p>Descrição: Jogador de Baisebol</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </main>
+
+    <script src="/script.js"></script>
 </body>
 </html>
